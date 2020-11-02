@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0" 
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+
+  <proxies>
+  
+    <proxy>
+      <id>fedex-http</id>
+      <active>true</active>
+      <protocol>http</protocol>
+      <host>internet.proxy.fedex.com</host>
+      <port>3128</port>
+	  <nonProxyHosts>localhost|*.fedex.com</nonProxyHosts>
+    </proxy>
+    
+    
+	<proxy>
+      <id>fedex-https</id>
+      <active>true</active>
+      <protocol>https</protocol>
+      <host>internet.proxy.fedex.com</host>
+      <port>3128</port>
+	  <nonProxyHosts>localhost|*.fedex.com</nonProxyHosts>
+    </proxy>
+    
+	
+    <proxy>
+        <id>optional</id>
+        <active>true</active>
+        <protocol>http</protocol>
+        <host>east.proxy.fedex.com</host>
+        <port>3128</port>
+      <nonProxyHosts>localhost|*.fedex.com</nonProxyHosts>
+    </proxy>   
+	  
+	  
+  </proxies>
+  
+    <servers>
+    <server>
+      <id>release</id>
+      <username>${env.NEXUS_USER}</username>
+      <password>${env.NEXUS_PASSWORD}</password>
+    </server>
+    <server>
+      <id>snapshot</id>
+      <username>${env.NEXUS_USER}</username>
+      <password>${env.NEXUS_PASSWORD}</password>
+    </server>
+  </servers>
+
+
+<mirrors>
+    <mirror>
+      <id>central</id>
+      <name>central</name>
+      <url>https://nexus.prod.cloud.fedex.com:8443/nexus/repository/maven-public/</url>
+      <mirrorOf>central</mirrorOf>
+    </mirror>
+ </mirrors>  
+ 
+</settings>

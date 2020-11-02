@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE logback>
+<configuration>
+	<!-- This will include a console appender and file appender.  
+		 We don't want that if we are using JSON.
+	<include resource="org/springframework/boot/logging/logback/base.xml"/>
+	 -->
+	<include resource="org/springframework/boot/logging/logback/defaults.xml" />
+	<springProfile name="cloud">   	   	
+		<appender name="JSON" class="ch.qos.logback.core.ConsoleAppender">
+	        <encoder class="net.logstash.logback.encoder.LogstashEncoder"/>
+		</appender>
+	    
+	  <root level="info">
+	  	<appender-ref ref="JSON"/>
+	  </root>        
+  </springProfile>
+  
+  <springProfile name="!cloud">   	   	
+		<appender name="Console" class="ch.qos.logback.core.ConsoleAppender">
+	        <encoder>
+        <pattern>
+          %d{yyyy-MM-dd};%d{HH:mm:ss.SSS};%t;%5p;%logger{25};%m%n
+        </pattern>
+        <charset>utf8</charset>
+      </encoder>
+		</appender>
+	    
+	  <root level="info">
+	  	<appender-ref ref="Console"/>
+	  </root>        
+  </springProfile>
+</configuration>

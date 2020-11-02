@@ -1,0 +1,8 @@
+#set the cloud config url using pcf environment variables
+spring:  
+  application:
+    name: cpms-systemForm-service
+  cloud:
+    config:
+      uri: ${CONFIG_URI}
+      fail-fast: false

@@ -1,0 +1,9 @@
+---
+applications:
+- name: cpms-systemForm-service
+  buildpacks:
+    - java_current
+  env:     
+    JAVA_OPTS: "-Duser.timezone=GMT "
+  routes:
+    - route: ((hostname)).app.((foundation)).paas.fedex.com     

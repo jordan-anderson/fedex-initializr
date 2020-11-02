@@ -1,0 +1,46 @@
+---
+spring:
+#Default profile is for developers on  their local machine	
+  profiles: default
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+management:
+  info:
+    build:
+      enabled: true
+    git:
+      mode: simple
+      enabled: true
+  endpoints:
+    enabled-by-default: true
+    web:
+      exposure:
+        include:  info, health, refresh, status 
+info:
+  active-profile: ${spring.profiles}
+
+---
+spring:
+#cloud profile is automatically activated during deployment on PCF
+  profiles: cloud
+  datasource:
+ #you can update DB_CREDS_UPS by adding db url to it
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+management:
+  info:
+    build:
+      enabled: true
+    git:
+      mode: simple
+      enabled: true
+  endpoints:
+    enabled-by-default: true
+    web:
+      exposure:
+        include:  info, health, refresh, status 
+info:
+  active-profile: ${spring.profiles}
